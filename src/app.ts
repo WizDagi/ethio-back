@@ -9,10 +9,8 @@ import favoriteRoutes from './routes/favorite.routes';
 
 const app = express();
 
-app.use(helmet());
-
 app.use(cors({
-  origin: true, // Reflect the request origin back to the client
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
