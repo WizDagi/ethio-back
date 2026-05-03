@@ -3,15 +3,9 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-// Use a singleton pattern to prevent multiple Prisma instances in development
+// Standard singleton pattern for Prisma
 const prismaClientSingleton = () => {
-  return new PrismaClient({
-    datasources: {
-      db: {
-        url: process.env.DATABASE_URL,
-      },
-    },
-  } as any);
+  return new PrismaClient();
 };
 
 declare global {

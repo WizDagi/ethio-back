@@ -18,21 +18,21 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// 1. Health check
+// Health check
 app.get('/api/v1/health', (req, res) => {
   res.status(200).json({ 
     status: 'ok', 
-    message: 'Backend is fully operational with bcryptjs and Prisma!' 
+    message: 'Backend is fully operational on Vercel!' 
   });
 });
 
-// 2. Routes
+// Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/destinations', destinationRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
 app.use('/api/v1/favorites', favoriteRoutes);
 
-// 3. Global Error Handler
+// Global Error Handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
   res.status(500).json({
