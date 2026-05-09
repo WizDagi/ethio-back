@@ -1,11 +1,17 @@
+import { Pool } from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-// Reverting to standard constructor as Prisma 7 picks up config from prisma.config.ts automatically
+const connectionString = process.env.DATABASE_URL;
+
+// Prisma 7 Singleton Pattern with Driver Adapter for Vercel
 const prismaClientSingleton = () => {
-  return new PrismaClient();
+  const pool = new Pool({ connectionString });
+  const adapter = new PrismaPg(pool);
+  return new PrismaClient({ adapter });
 };
 
 declare global {
