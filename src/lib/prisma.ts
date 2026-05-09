@@ -3,11 +3,9 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-// In Prisma 7, the property is 'datasourceUrl' (singular)
+// Reverting to standard constructor as Prisma 7 picks up config from prisma.config.ts automatically
 const prismaClientSingleton = () => {
-  return new PrismaClient({
-    datasourceUrl: process.env.DATABASE_URL,
-  } as any);
+  return new PrismaClient();
 };
 
 declare global {
