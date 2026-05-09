@@ -5,6 +5,9 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+// Globally disable strict TLS rejection to fix Supabase self-signed cert issues
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const connectionString = process.env.DATABASE_URL;
 
 // Prisma 7 Singleton Pattern with Driver Adapter for Vercel
